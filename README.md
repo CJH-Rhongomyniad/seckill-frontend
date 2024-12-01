@@ -1,4 +1,4 @@
-# front
+# seckill-app
 
 ## Project setup
 ```

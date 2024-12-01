@@ -1,36 +1,38 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Register from '@/views/UserRegister.vue';
+import Login from '@/views/UserLogin.vue';
+import ProductList from '@/views/ProductList.vue';
+import ProductDetail from '@/views/ProductDetail.vue';
 
-/* Layout */
-import Layout from '@/layout'
+Vue.use(Router);
 
-Vue.use(VueRouter)
-
-// 防止连续点击多次路由报错
-let routerPush = VueRouter.prototype.push;
-VueRouter.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(err => err)
-}
-
-const routes = [
-  {
-    path: '/',
-    component: Layout, // 修改为 Layout 组件
-    children: [
-      {
-        path: '',
-        component: () => import( '../views/HomeView.vue'),
-        name: 'home'
-      }
-    ]
-  },
-
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+export default new Router({
+  routes: [
+    {
+      path: '/register',
+      name: 'UserRegister',
+      component: Register
+    },
+    {
+      path: '/login',
+      name: 'UserLogin',
+      component: Login
+    },
+    {
+      path: '/products',
+      name: 'ProductList',
+      component: ProductList
+    },
+    {
+      path: '/product/:id',
+      name: 'ProductDetail',
+      component: ProductDetail
+    },
+    {
+      path: '/',
+      name: 'UserRegister',
+      component: Register
+    },
+  ]
+});
